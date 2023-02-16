@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:teste/InfUsers.dart';
-
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Ola! :)'),
+      home: const MyHomePage(title: 'Ola! :) | Hora:'),
     );
   }
 }
@@ -34,17 +34,23 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  String? _dateFormatted;
   
   
   @override
   Widget build(BuildContext context) {
+
+    setState(() {
+      _dateFormatted = DateFormat.Hm().format(DateTime.now());
+    });
     
 
 
     return Scaffold(
       appBar: AppBar(
 
-        title: Text(widget.title),
+        title: Text(widget.title+_dateFormatted.toString()),
       ),
       body: Center(
 
