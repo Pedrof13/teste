@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:teste/classes/users.dart';
 import 'package:teste/classes/Getusers.dart';
 
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 
 
 class InfUsers extends StatefulWidget {
@@ -18,6 +21,35 @@ class _InfUsersState extends State<InfUsers> {
 
   int _currentSortColumn = 0;
   bool _isSortAsc = true;
+
+
+
+
+  Future<void> editUser(int id, int roleId, String name, String password, bool active) async {
+
+    final url = Uri.parse(('http://10.0.10.139:5000/api/users'));
+
+    final response = await http.put(
+      url,
+      body: jsonEncode({
+        'id':id,
+        'role_id':roleId,
+        'name': name,
+        'password': password,
+        'active':active,
+
+      }),
+      headers: {'Content-Type': 'application/json'},
+    );
+
+    if (response.statusCode == 201) {
+      // Usuário criado com sucesso
+      print('Usuário atualizado com sucesso!');
+    } else {
+      // Algo deu errado
+      print('Erro ao atualizar usuário: ${response.statusCode}');
+    }
+  }
 
 
 
@@ -90,6 +122,14 @@ class _InfUsersState extends State<InfUsers> {
               ),
             ),
 
+            SizedBox(height: 20,),
+
+
+            ElevatedButton(onPressed: () {
+              editUser(42,1,'João','1234',true);
+
+            }, child: Text("Editar"),)
+
 
 
 
@@ -155,6 +195,7 @@ class _InfUsersState extends State<InfUsers> {
   List<DataRow> _createRows(dynamic snapshot) {
     return List.generate(snapshot.data!.length, (index) {
 
+
       var roleId = snapshot.data![index].roleId;
       var name = snapshot.data![index].name;
       var password = snapshot.data![index].password;
@@ -169,6 +210,7 @@ class _InfUsersState extends State<InfUsers> {
         DataCell(Text(name.toString())),
         DataCell(Text(password.toString())),
         DataCell(Text(active.toString())),
+
 
 
       ],
