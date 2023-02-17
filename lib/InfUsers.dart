@@ -49,7 +49,7 @@ class _InfUsersState extends State<InfUsers> {
                */
 
               height: 500, //define a altura do container
-              width: 1000, //define largura do container
+              width: 1100, //define largura do container
               decoration: BoxDecoration(
                 color: Colors.white,
 
@@ -173,6 +173,11 @@ class _InfUsersState extends State<InfUsers> {
 
       ],
         selected: 0 == selectedIndex,
+
+
+
+        
+
 
 
 
