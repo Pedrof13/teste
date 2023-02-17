@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste/classes/users.dart';
-import 'package:teste/classes/Getusers.dart';
+import 'package:teste/Getusers.dart';
+import 'package:teste/constants/app_constants.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -27,7 +28,7 @@ class _InfUsersState extends State<InfUsers> {
 
   Future<void> editUser(int id, int roleId, String name, String password, bool active) async {
 
-    final url = Uri.parse(('http://10.0.10.139:5000/api/users'));
+    final url = Uri.parse(('${internal_link}users'));
 
     final response = await http.put(
       url,
@@ -43,11 +44,9 @@ class _InfUsersState extends State<InfUsers> {
     );
 
     if (response.statusCode == 201) {
-      // Usuário criado com sucesso
-      print('Usuário atualizado com sucesso!');
+      print('Utilizador atualizado com sucesso!');
     } else {
-      // Algo deu errado
-      print('Erro ao atualizar usuário: ${response.statusCode}');
+      print('Erro ao atualizar utilizador: ${response.statusCode}');
     }
   }
 
@@ -62,6 +61,7 @@ class _InfUsersState extends State<InfUsers> {
 
         title: Text("Inf. dos utilizadores"),
         centerTitle: true,
+
       ),
       body: Center(
 
@@ -72,13 +72,6 @@ class _InfUsersState extends State<InfUsers> {
           children: <Widget>[
 
             Container(
-              /*
-              width: MediaQuery
-                  .of(context)
-                  .size
-                  .width,
-
-               */
 
               height: 500, //define a altura do container
               width: 1100, //define largura do container
