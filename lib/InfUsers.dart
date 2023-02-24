@@ -73,8 +73,8 @@ class _InfUsersState extends State<InfUsers> {
 
             Container(
 
-              height: 500, //define a altura do container
-              width: 1100, //define largura do container
+              height: 520, //define a altura do container
+              width: 1200, //define largura do container
               decoration: BoxDecoration(
                 color: Colors.white,
 
@@ -91,7 +91,7 @@ class _InfUsersState extends State<InfUsers> {
                           columnSpacing: MediaQuery
                               .of(context)
                               .size
-                              .width / 10,
+                              .width / 15,
                           dataRowHeight: 35,
                           horizontalMargin: 30,
                           headingTextStyle: const TextStyle(
@@ -117,11 +117,13 @@ class _InfUsersState extends State<InfUsers> {
 
             SizedBox(height: 20,),
 
-
+            /*
             ElevatedButton(onPressed: () {
               editUser(42,1,'João','1234',true);
 
             }, child: Text("Editar"),)
+
+             */
 
 
 
@@ -178,6 +180,16 @@ class _InfUsersState extends State<InfUsers> {
         label: const Text('Active'),
         onSort: (columnIndex, _) {},
       ),
+      DataColumn(
+        label: const Text('Edit'),
+        onSort: (columnIndex, _) {},
+      ),
+      DataColumn(
+        label: const Text('Delete'),
+        onSort: (columnIndex, _) {},
+      ),
+
+
 
 
     ];
@@ -203,6 +215,8 @@ class _InfUsersState extends State<InfUsers> {
         DataCell(Text(name.toString())),
         DataCell(Text(password.toString())),
         DataCell(Text(active.toString())),
+        DataCell(IconButton(icon: Icon(Icons.edit), onPressed: () {},)),
+        DataCell(IconButton(icon: Icon(Icons.delete),onPressed: () {},)),
 
 
 
