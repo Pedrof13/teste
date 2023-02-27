@@ -1,8 +1,6 @@
-
-
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:teste/classes/users.dart';
+import 'package:teste/classes/Cusers.dart';
 
 import 'package:teste/constants/app_constants.dart';
 

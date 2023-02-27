@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:teste/classes/users.dart';
-import 'package:teste/Getusers.dart';
-import 'package:teste/constants/app_constants.dart';
-
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:teste/Functions/DeleteUser.dart';
+import 'package:teste/classes/Cusers.dart';
+import 'package:teste/Functions/Getusers.dart';
+import 'package:teste/Functions/EditUser.dart';
 
 
 
@@ -24,31 +22,72 @@ class _InfUsersState extends State<InfUsers> {
   bool _isSortAsc = true;
 
 
+  
+  void _showEditForm(Users user) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Edit User'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("ID: "+user.id.toString()),
 
+                TextFormField(
+                  initialValue: user.name,
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                  ),
+                  onChanged: (String value) {
+                    user.name = value;
+                  },
+                ),
+                TextFormField(
+                  initialValue: user.password,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                  ),
+                  onChanged: (String value) {
+                    user.password = value;
+                  },
+                ),
 
-  Future<void> editUser(int id, int roleId, String name, String password, bool active) async {
+              ],
+            ),
+          ),
+          actions: <Widget>[
 
-    final url = Uri.parse(('${internal_link}users'));
+            ElevatedButton(
+              child: Text('Delete'),
+              onPressed: () {
+                deleteUser(user.id);
+                Navigator.of(context).pop();
+              },
+            ),
 
-    final response = await http.put(
-      url,
-      body: jsonEncode({
-        'id':id,
-        'role_id':roleId,
-        'name': name,
-        'password': password,
-        'active':active,
+            ElevatedButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
 
-      }),
-      headers: {'Content-Type': 'application/json'},
+            ElevatedButton(
+              child: Text('Salvar'),
+              onPressed: () {
+                editUser(user.id,user.roleId,user.name, user.password,user.active);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
-
-    if (response.statusCode == 201) {
-      print('Utilizador atualizado com sucesso!');
-    } else {
-      print('Erro ao atualizar utilizador: ${response.statusCode}');
-    }
   }
+
+
 
 
 
@@ -180,6 +219,8 @@ class _InfUsersState extends State<InfUsers> {
         label: const Text('Active'),
         onSort: (columnIndex, _) {},
       ),
+
+      /*
       DataColumn(
         label: const Text('Edit'),
         onSort: (columnIndex, _) {},
@@ -188,6 +229,8 @@ class _InfUsersState extends State<InfUsers> {
         label: const Text('Delete'),
         onSort: (columnIndex, _) {},
       ),
+
+       */
 
 
 
@@ -215,13 +258,19 @@ class _InfUsersState extends State<InfUsers> {
         DataCell(Text(name.toString())),
         DataCell(Text(password.toString())),
         DataCell(Text(active.toString())),
-        DataCell(IconButton(icon: Icon(Icons.edit), onPressed: () {},)),
-        DataCell(IconButton(icon: Icon(Icons.delete),onPressed: () {},)),
+        //DataCell(IconButton(icon: Icon(Icons.edit), onPressed: () {},)),
+        //DataCell(IconButton(icon: Icon(Icons.delete),onPressed: () {},)),
 
 
 
       ],
         selected: 0 == selectedIndex,
+        onSelectChanged: (val) {
+          setState(() {
+            _showEditForm(Users(id: id, roleId: roleId, name: name, password: password, active: active));
+
+          });
+        },
 
 
 
