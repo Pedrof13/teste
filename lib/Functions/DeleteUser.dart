@@ -11,10 +11,10 @@ Future<void> deleteUser(int userId) async {
   );
 
   if (response.statusCode == 204) {
-    // Usuário excluído com sucesso
-    print('Usuário excluído com sucesso!');
+    // utilizador removido com sucesso
+    print('Utilizador removido com sucesso!');
   } else {
     // Algo deu errado
-    print('Erro ao excluir usuário: ${response.statusCode}');
+    print('Erro ao remover utilizador: ${response.statusCode}');
   }
 }

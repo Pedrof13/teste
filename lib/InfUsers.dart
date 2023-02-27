@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:teste/Functions/DeleteUser.dart';
+
 import 'package:teste/classes/Cusers.dart';
+
 import 'package:teste/Functions/Getusers.dart';
 import 'package:teste/Functions/EditUser.dart';
+import 'package:teste/Functions/DeleteUser.dart';
+import 'package:teste/Functions/CreateUser.dart';
+
 
 
 
@@ -88,6 +92,73 @@ class _InfUsersState extends State<InfUsers> {
   }
 
 
+  void _showNewUser(){
+
+    int ID=1;
+    String name="";
+    String password="";
+    bool active=true;
+
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Create User'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                TextFormField(
+                  initialValue: name,
+                  decoration: InputDecoration(
+                    labelText: 'Name',
+                  ),
+                  onChanged: (String value) {
+                    name = value;
+                  },
+                ),
+                TextFormField(
+                  initialValue: password,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                  ),
+                  onChanged: (String value) {
+                    password = value;
+                  },
+                ),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+
+
+            ElevatedButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+
+            ElevatedButton(
+              child: Text('Criar'),
+              onPressed: () {
+                createOrValidateUser(ID, 1, name, password, active);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+
+
+
+  }
+
+
 
 
 
@@ -99,6 +170,13 @@ class _InfUsersState extends State<InfUsers> {
       appBar: AppBar(
 
         title: Text("Inf. dos utilizadores"),
+        actions: [
+          IconButton(onPressed: (){
+            _showNewUser();
+          }, icon: Icon(Icons.add),),
+
+
+        ],
         centerTitle: true,
 
       ),
@@ -156,13 +234,9 @@ class _InfUsersState extends State<InfUsers> {
 
             SizedBox(height: 20,),
 
-            /*
-            ElevatedButton(onPressed: () {
-              editUser(42,1,'João','1234',true);
 
-            }, child: Text("Editar"),)
 
-             */
+
 
 
 
