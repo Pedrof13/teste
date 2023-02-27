@@ -38,8 +38,8 @@ Future<void> createOrValidateUser(int id, int roleId, String name, String passwo
   final response = await http.get(Uri.parse('${internal_link}users/$id'));
   if (response.statusCode == 200) {
     //Utilizador existente, passar para o próximo...
-    id++;
     print(id);
+    id++;
 
     createOrValidateUser(id, roleId, name, password, active);
 
