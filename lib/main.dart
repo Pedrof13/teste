@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:teste/InfUsers.dart';
 import 'package:intl/intl.dart';
+import 'package:teste/constants/appBarCustom.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'teste',
       debugShowCheckedModeBanner: false,
+
       theme: ThemeData(
+        appBarTheme: CustomAppBar(),
+
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Ola! :)      Hora:'),
@@ -50,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
 
-        title: Text(widget.title+_dateFormatted.toString()),
+        title: Text(widget.title+_dateFormatted.toString() , style: TextStyle(color: Colors.white),),
       ),
       body: Center(
 
@@ -68,11 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => InfUsers()),
+                    MaterialPageRoute(builder: (context) => const InfUsers()),
 
                   );
                 },
-                child: const Text("Mostrar Inf.")),
+                child: const Text("Mostrar Inf."), ),
 
           ],
         ),

@@ -168,8 +168,9 @@ class _InfUsersState extends State<InfUsers> {
 
     return Scaffold(
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
 
-        title: Text("Inf. dos utilizadores"),
+        title: Text("Inf. dos utilizadores", style: TextStyle(color: Colors.white),),
         actions: [
           IconButton(onPressed: (){
             _showNewUser();
