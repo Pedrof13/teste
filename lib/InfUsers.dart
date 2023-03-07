@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:teste/classes/Cusers.dart';
 
-import 'package:teste/Functions/Getusers.dart';
+import 'package:teste/Functions/GetUsers.dart';
 import 'package:teste/Functions/EditUser.dart';
 import 'package:teste/Functions/DeleteUser.dart';
 import 'package:teste/Functions/CreateUser.dart';
@@ -159,18 +159,16 @@ class _InfUsersState extends State<InfUsers> {
   }
 
 
-
-
-
   @override
   Widget build(BuildContext context) {
     futureUsers = fetchGetAllUsers();
 
     return Scaffold(
+
       appBar: AppBar(
         iconTheme: IconThemeData(color: Colors.white),
-
         title: Text("Inf. dos utilizadores", style: TextStyle(color: Colors.white),),
+
         actions: [
           IconButton(onPressed: (){
             _showNewUser();
@@ -193,19 +191,19 @@ class _InfUsersState extends State<InfUsers> {
 
               height: 520, //define a altura do container
               width: 1200, //define largura do container
+
               decoration: BoxDecoration(
                 color: Colors.white,
-
-
               ),
+
               child: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
                 child: FutureBuilder<List<Users>>(
                     future: futureUsers,
                     builder: (context, snapshot) {
+
                       if (snapshot.hasData) {
                         return DataTable(
-
                           columnSpacing: MediaQuery
                               .of(context)
                               .size
@@ -236,44 +234,16 @@ class _InfUsersState extends State<InfUsers> {
             SizedBox(height: 20,),
 
 
-
-
-
-
-
-
           ],
         ),
       ),
     );
   }
-/*
-  DataTable _createDataTable(dynamic snapshot) {
-    return DataTable(
-      columnSpacing: MediaQuery
-          .of(context)
-          .size
-          .width / 15,
-      dataRowHeight: 60,
-      horizontalMargin: 30,
-      headingTextStyle: const TextStyle(
-
-
-          fontWeight: FontWeight.w400),
-      columns: _createColumns(),
-      rows: _createRows(snapshot),
-
-
-    );
-  }
-
- */
 
   // Here u can create ur columns
   // Be careful u need to have the same quantity of widgets in ur row
   List<DataColumn> _createColumns() {
     return [
-
       DataColumn(
         label: const Text('id'),
         onSort: (columnIndex, _) {},
@@ -294,20 +264,6 @@ class _InfUsersState extends State<InfUsers> {
         label: const Text('Active'),
         onSort: (columnIndex, _) {},
       ),
-
-      /*
-      DataColumn(
-        label: const Text('Edit'),
-        onSort: (columnIndex, _) {},
-      ),
-      DataColumn(
-        label: const Text('Delete'),
-        onSort: (columnIndex, _) {},
-      ),
-
-       */
-
-
 
 
     ];
@@ -333,10 +289,6 @@ class _InfUsersState extends State<InfUsers> {
         DataCell(Text(name.toString())),
         DataCell(Text(password.toString())),
         DataCell(Text(active.toString())),
-        //DataCell(IconButton(icon: Icon(Icons.edit), onPressed: () {},)),
-        //DataCell(IconButton(icon: Icon(Icons.delete),onPressed: () {},)),
-
-
 
       ],
         selected: 0 == selectedIndex,

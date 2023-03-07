@@ -5,7 +5,7 @@ import 'package:teste/classes/Cusers.dart';
 import 'package:teste/constants/app_constants.dart';
 
 Future<List<Users>> fetchGetAllUsers() async {
-  print('RESPONSE BODY');
+  //print('RESPONSE BODY');
 
   // Internal LINK = http://10.0.10.139:5000/api/GetAllFrames
   // External LINK = https://api.neivacor.pt/api/GetAllFrames
@@ -17,7 +17,7 @@ Future<List<Users>> fetchGetAllUsers() async {
   if (response.statusCode >= 200 && response.statusCode < 300) {
     // If the server did return a 200 OK response,
     // then parse the JSON.
-    print('positive response');
+    //print('positive response');
 
     List<dynamic> body = jsonDecode(response.body);
     List<Users> _Users = body
@@ -26,7 +26,7 @@ Future<List<Users>> fetchGetAllUsers() async {
     )
         .toList();
 
-    print(body);
+    //print(body);
 
     return _Users;
   } else {
