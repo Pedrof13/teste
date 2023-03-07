@@ -3,6 +3,7 @@ import 'package:teste/InfUsers.dart';
 import 'package:intl/intl.dart';
 import 'package:teste/constants/appBarCustom.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -53,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
 
       appBar: AppBar(
-        title: Text(widget.title+_dateFormatted.toString() , style: TextStyle(color: Colors.white),),
+        title: Text(widget.title+_dateFormatted.toString() , style: const TextStyle(color: Colors.white),),
       ),
 
       body: Center(
@@ -63,19 +64,33 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
 
-            const SizedBox(
-              height: 40,
+            const SizedBox(height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+
+                Text("Teste users -->",style: TextStyle(fontSize: 15),),
+
+                SizedBox(width: 5),
+
+                ElevatedButton(
+                  onPressed: (){
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const InfUsers()),);
+                  },
+
+                  child: const Text("Ver users"), ),
+
+
+
+              ],
             ),
 
-            ElevatedButton(
-                onPressed: (){
 
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const InfUsers()),);
-                },
 
-                child: const Text("Mostrar Inf."), ),
 
           ],
         ),

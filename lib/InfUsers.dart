@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:teste/classes/Cusers.dart';
 
-import 'package:teste/Functions/GetUsers.dart';
-import 'package:teste/Functions/EditUser.dart';
-import 'package:teste/Functions/DeleteUser.dart';
-import 'package:teste/Functions/CreateUser.dart';
+import 'package:teste/Functions/Users/GetUsers.dart';
+import 'package:teste/Functions/Users/EditUser.dart';
+import 'package:teste/Functions/Users/DeleteUser.dart';
+import 'package:teste/Functions/Users/CreateUser.dart';
 
 
 
