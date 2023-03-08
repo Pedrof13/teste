@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:teste/InfUsers.dart';
+
 import 'package:intl/intl.dart';
 import 'package:teste/constants/appBarCustom.dart';
 
+import 'package:teste/Screens/InfUsers.dart';
+import 'package:teste/Screens/ShowDrawings.dart';
 
 void main() {
   runApp(const MyApp());
@@ -83,6 +85,32 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
 
                   child: const Text("Ver users"), ),
+
+
+
+              ],
+            ),
+
+            const SizedBox(height: 20),
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+
+              children: <Widget>[
+
+                Text("Módulo Desenhos -->",style: TextStyle(fontSize: 15),),
+
+                SizedBox(width: 5),
+
+                ElevatedButton(
+                  onPressed: (){
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const ShowDrawings()),);
+                  },
+
+                  child: const Text("Ver Desenhos"), ),
 
 
 
