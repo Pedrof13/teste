@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:teste/constants/appBarCustom.dart';
 
-import 'package:teste/Screens/InfUsers.dart';
+import 'package:teste/Screens/ShowUsers.dart';
 import 'package:teste/Screens/ShowDrawings.dart';
+import 'package:teste/Screens/UI.dart';
 
 void main() {
   runApp(const MyApp());
@@ -111,6 +112,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
 
                   child: const Text("Ver Desenhos"), ),
+
+                SizedBox(width: 5),
+
+                ElevatedButton(
+                  onPressed: (){
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const DrawingsScreenView()),);
+                  },
+
+                  child: const Text("Ver Design"), ),
 
 
 
